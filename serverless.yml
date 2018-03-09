@@ -7,7 +7,16 @@ provider:
   region: eu-central-1
 
 functions:
-  hello:
-    handler: handler.hello
+  learn:
+    handler: handler.learn
     events:
-      - http: GET hello
+      - schedule: rate(1 day)
+      - http:
+          path: learn
+          method: GET
+  predict:
+    handler: handler.predict
+    events:
+      - http:
+          path: predict
+          method: GET

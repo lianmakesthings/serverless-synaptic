@@ -1,0 +1,22 @@
+{
+  "name": "serverless-synaptic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chimney42/serverless-synaptic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chimney42/serverless-synaptic/issues"
+  },
+  "homepage": "https://github.com/Chimney42/serverless-synaptic#readme",
+  "dependencies": {
+    "synaptic": "^1.1.4"
+  }
+}
