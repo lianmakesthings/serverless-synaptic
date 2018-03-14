@@ -5,9 +5,11 @@ const dataBucketName = process.env.DATA_BUCKET;
 const modelBucketName = process.env.MODEL_BUCKET;
 
 const learn = (event, context, callback) => {
-  s3Client.download(dataBucketName, 'train.csv')
+  s3Client.download(dataBucketName, 'combats.csv')
     .then(data => {
       console.log(data);
+
+
       const response = {
         statusCode: 200,
         body: JSON.stringify({
