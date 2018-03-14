@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Chimney42/serverless-synaptic#readme",
   "dependencies": {
+    "aws-sdk": "^2.207.0",
     "synaptic": "^1.1.4"
   }
 }
