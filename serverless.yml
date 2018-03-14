@@ -33,6 +33,10 @@ functions:
       - http:
           path: predict
           method: GET
+          request:
+            parameters:
+              querystrings:
+                pokemon: true
 resources:
   Resources:
     ModelBucket:

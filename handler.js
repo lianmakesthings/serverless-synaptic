@@ -66,14 +66,23 @@ const learn = (event, context, callback) => {
 }
 
 const predict = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'You asked for a prediction'
-    }),
-  };
+  const pokemon = event.queryStringParameters.pokemon.split(',');
+  let input = pokemon.map(p => parseInt(p))
+  s3Client.download(modelBucketName, 'model.json')
+  .then(object => {
+    let network = Network.fromJSON(JSON.parse(object));
+    const probability = network.activate(input)
+    const prediction = probability.map(p => Math.round(p * 100))
 
-  callback(null, response);
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: `The predicted chances for winning combat: ${pokemon[0]} ${prediction[0]}%, ${pokemon[1]} ${prediction[1]}%`
+      }),
+    };
+
+    callback(null, response);
+  })
 };
 
 module.exports = {
