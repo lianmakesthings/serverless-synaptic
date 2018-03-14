@@ -2,7 +2,7 @@ service: serverless-synaptic
 
 custom:
   dataBucketName: serverless-synaptic-data
-  modelBucketName: serverless-synaptic-model
+  modelBucketName: serverless-synaptic-models
 
 provider:
   name: aws
@@ -10,6 +10,11 @@ provider:
   stage: dev
   region: eu-central-1
   timeout: 100
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "*"
   environment:
     DATA_BUCKET: ${self:custom.dataBucketName}
     MODEL_BUCKET: ${self:custom.modelBucketName}
@@ -30,21 +35,10 @@ functions:
           method: GET
 resources:
   Resources:
-    UploadBucket:
+    ModelBucket:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.modelBucketName}
-        AccessControl: Private
-        CorsConfiguration:
-          CorsRules:
-          - AllowedMethods:
-            - GET
-            - PUT
-            - POST
-            - HEAD
-            AllowedOrigins:
-            - "*"
-            AllowedHeaders:
-            - "*"
+
 plugins:
   - serverless-offline

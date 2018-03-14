@@ -33,11 +33,11 @@ const learn = (event, context, callback) => {
       });
 
       const options = {
-        iterations: 100,
+        iterations: 10,
         rate: .005,
       	shuffle: true,
         schedule: {
-        	every: 10,
+        	every: 1,
         	do: function(data) {
         		console.log("iterations", data.iterations, "error", data.error);
         	}
@@ -45,16 +45,19 @@ const learn = (event, context, callback) => {
       };
       console.log('training network')
       const result = trainer.train(trainingSet, options)
-      let networkJSON = network.toJSON()
+      console.log(`network was trained over ${result.iterations} iterations in ${result.time}ms. The final error was ${result.error}.`);
 
+      let networkJSON = network.toJSON()
+      return s3Client.upload(modelBucketName, 'model.json', JSON.stringify(networkJSON))
+    })
+    .then(result => {
       const response = {
         statusCode: 200,
         body: JSON.stringify({
-          message: `network was trained over ${result.iterations} iterations in ${result.time}ms. The final error was ${result.error}`
+          message: 'Model was successfully uploaded to s3.'
         }),
       };
       callback(null, response);
-
     })
     .catch(err => {
       console.error(err);
