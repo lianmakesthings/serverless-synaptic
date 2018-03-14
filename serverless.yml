@@ -9,6 +9,7 @@ provider:
   runtime: nodejs6.10
   stage: dev
   region: eu-central-1
+  timeout: 100
   environment:
     DATA_BUCKET: ${self:custom.dataBucketName}
     MODEL_BUCKET: ${self:custom.modelBucketName}
@@ -45,3 +46,5 @@ resources:
             - "*"
             AllowedHeaders:
             - "*"
+plugins:
+  - serverless-offline
