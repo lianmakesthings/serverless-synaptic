@@ -43,7 +43,7 @@ Setup aws credentials
 
 
 
-## Usage
+## Run
 
 ### Local dev
 `$ serverless offline`  
@@ -91,4 +91,30 @@ Service successfully published! Your service details are available at:
 https://platform.serverless.com/services/Chimney42/serverless-synaptic
 Serverless: Removing old service versions...
 
+```
+
+## Use
+
+These are the HTTP requests and corresponding responses to trigger a learning cycle or prediction respectively.
+
+### Learn
+```http request
+GET /learn
+```
+
+```http response
+HTTP/1.1 200 OK
+
+{"message":"Model was successfully uploaded to s3."}
+```
+
+### Predict
+```http request
+GET /predict?pokemon=<pokemonId>,<otherPokemonId>
+```
+
+```http response
+HTTP/1.1 200 OK
+
+{"message":"The predicted chances for winning combat: <pokemonId> 58%, <otherPokemonId> 42%"}
 ```
