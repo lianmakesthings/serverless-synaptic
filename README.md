@@ -32,13 +32,12 @@ Prediction is triggered by an API request.
 
 
 ## Setup
-Install node, npm, serverless, serverless offline, synaptic, aws-sdk
+Install node, npm, serverless and npm packages (node-fetch, aws-sdk, serverless offline)
 
 `$ brew install node`
 
-`$ npm install synaptic aws-sdk --save`  
 `$ npm install serverless -g`  
-`$ npm install serverless-offline --save-dev`
+`$ npm install`
 
 Setup aws credentials
 

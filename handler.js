@@ -4,17 +4,25 @@ const s3Client = require('./lib/s3Client');
 const dataBucketName = process.env.DATA_BUCKET;
 const modelBucketName = process.env.MODEL_BUCKET;
 const Machine = require('./lib/machine');
+const fetch = require('node-fetch');
 
 const learn = (event, context, callback) => {
     const machine = Machine.fromConfig([2, 64, 2]);
-    s3Client.download(dataBucketName, 'combats.csv')
+
+    fetch('https://www.chimney42.de/app/download/11277050297/combats.csv')
+        .then(response => {
+            return response.text();
+        })
         .then(data => {
             console.log('data retrieved from s3');
 
             data = data.split("\n");
             data.shift(); // remove header
+            if (!data[data.length-1]) data.pop(); // remove empty newline
+
             const trainingData = data.map(line => {
                 let vals = line.split(',');
+
                 let input = [
                     parseInt(vals[0]) / 800,
                     parseInt(vals[1]) / 800
