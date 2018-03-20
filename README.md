@@ -14,10 +14,21 @@ Infrastructure:
 https://serverless.com/
 
 ## How it works
-Overview: 
-![application diagram][overview]
+![application diagram overview][overview]
 
 [overview]: ./assets/serverless%20synaptic.png "serverless synaptic overview"
+
+### Learning
+Learning is triggered every 24h by a scheduler but can also be triggered manually by an API request to make development easier.  
+![application diagram learning][learning]
+
+[learning]: ./assets/serverless%20synaptic%20learn.png "serverless synaptic learning"
+
+### Prediction
+Prediction is triggered by an API request.  
+![application diagram prediction][prediction]
+
+[prediction]: ./assets/serverless%20synaptic%20predict.png "serverless synaptic prediction"
 
 
 ## Setup
