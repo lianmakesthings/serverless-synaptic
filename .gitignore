@@ -5,4 +5,7 @@ jspm_packages
 # Serverless directories
 .serverless
 
+# IDE directories
+.idea
+
 package-lock.json
