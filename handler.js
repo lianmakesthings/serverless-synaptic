@@ -69,7 +69,7 @@ const learn = (event, context, callback) => {
 
 const predict = (event, context, callback) => {
     const pokemon = event.queryStringParameters.pokemon.split(',');
-    let input = pokemon.map(p => parseInt(p));
+    let input = pokemon.map(p => parseInt(p) / 800);
 
     s3Client.download(modelBucketName, 'model.json')
         .then(object => {
